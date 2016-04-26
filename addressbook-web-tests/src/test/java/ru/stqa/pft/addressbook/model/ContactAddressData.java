@@ -1,9 +1,9 @@
-package ru.stqa.pft.addressbook.tests;
+package ru.stqa.pft.addressbook.model;
 
-public class GroupAddressData {
+public class ContactAddressData {
     private final String address;
 
-    public GroupAddressData(String address) {
+    public ContactAddressData(String address) {
         this.address = address;
     }
 

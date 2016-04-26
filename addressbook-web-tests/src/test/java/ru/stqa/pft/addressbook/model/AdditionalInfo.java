@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook.tests;
+package ru.stqa.pft.addressbook.model;
 
 public class AdditionalInfo {
     private final String phone;

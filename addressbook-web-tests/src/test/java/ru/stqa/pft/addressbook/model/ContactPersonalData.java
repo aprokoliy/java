@@ -1,12 +1,12 @@
-package ru.stqa.pft.addressbook.tests;
+package ru.stqa.pft.addressbook.model;
 
-public class GroupPersonalData {
+public class ContactPersonalData {
     private final String firstname;
     private final String middlename;
     private final String surname;
     private final String nickname;
 
-    public GroupPersonalData(String firstname, String middlename, String surname, String nickname) {
+    public ContactPersonalData(String firstname, String middlename, String surname, String nickname) {
         this.firstname = firstname;
         this.middlename = middlename;
         this.surname = surname;
