@@ -38,5 +38,17 @@ public class ContactHelper extends HelperBase {
     public void submitContactCreation(){
         click(By.xpath("//div[@id='content']/form/input[21]"));
 }
+
+    public boolean isContactExist() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    public void createNewContact(ContactPersonalData  contact) {
+        initUserCreation();
+        fillPersonalData(contact);
+        submitContactCreation();
+
+
+    }
 }
 

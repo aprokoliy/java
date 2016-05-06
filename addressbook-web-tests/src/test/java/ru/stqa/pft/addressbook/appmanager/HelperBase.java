@@ -48,4 +48,8 @@ public class HelperBase {
             return false;
         }
     }
+
+    public  void initUserCreation() {
+        click(By.linkText("add new"));
+    }
 }

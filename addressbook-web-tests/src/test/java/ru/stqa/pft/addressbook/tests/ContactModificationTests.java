@@ -13,7 +13,10 @@ public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModification(){
-
+        if(!app.getContactHelper().isContactExist()){
+            app.getContactHelper().createNewContact(new ContactPersonalData("ann", "no", "Prokoliy", "anno"));
+            app.getNavigationHelper().returnToHomePage();
+        }
         app.getGroupHelper().selectCheckBox();
         app.getGroupHelper().initModificationContact();
         app.getContactHelper().fillPersonalData(new ContactPersonalData("kolia", "hoo", "Mikituk", "mik"));
