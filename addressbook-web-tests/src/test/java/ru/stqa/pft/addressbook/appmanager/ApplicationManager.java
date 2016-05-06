@@ -55,7 +55,7 @@ public class ApplicationManager {
                 System.out.println("Browser is not chosen or another inner error occurs!");
         }
 
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+       // wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/addressbook/");
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
