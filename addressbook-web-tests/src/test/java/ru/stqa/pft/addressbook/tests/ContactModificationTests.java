@@ -15,15 +15,15 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification(){
         if(!app.getContactHelper().isContactExist()){
             app.getContactHelper().createNewContact(new ContactPersonalData("ann", "no", "Prokoliy", "anno"));
-            app.getNavigationHelper().returnToHomePage();
+            app.goTo().HomePage();
         }
-        app.getGroupHelper().selectCheckBox();
-        app.getGroupHelper().initModificationContact();
-        app.getContactHelper().fillPersonalData(new ContactPersonalData("kolia", "hoo", "Mikituk", "mik"));
+        app.group().selectCheckBox();
+        app.group().initModificationContact();
+        app.getContactHelper().fill(new ContactPersonalData("kolia", "hoo", "Mikituk", "mik"));
         app.getContactHelper().fillAddressData(new ContactAddressData("Lvov"));
         app.getContactHelper().fillAdditionalInfo(new AdditionalInfo("0661738633", "ann.prok@gmail.com", "1983"));
-        app.getGroupHelper().submitGroupModification();
-        app.getNavigationHelper().returnToHomePage();
+        app.group().submitGroupModification();
+        app.goTo().HomePage();
 
     }
 

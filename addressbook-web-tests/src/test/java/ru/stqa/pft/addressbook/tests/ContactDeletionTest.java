@@ -13,10 +13,10 @@ public class ContactDeletionTest extends TestBase {
 
         if(!app.getContactHelper().isContactExist()){
            app.getContactHelper().createNewContact(new ContactPersonalData("ann", "no", "Prokoliy", "anno"));
-            app.getNavigationHelper().returnToHomePage();
+            app.goTo().HomePage();
         }
-        app.getGroupHelper().selectCheckBox();
-        app.getGroupHelper().pathToDelete();
-        app.getNavigationHelper().returnToHomePage();
+        app.group().selectCheckBox();
+        app.group().pathToDelete();
+        app.goTo().HomePage();
     }
 }
