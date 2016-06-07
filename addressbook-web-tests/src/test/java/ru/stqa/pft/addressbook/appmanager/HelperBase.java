@@ -52,4 +52,22 @@ public class HelperBase {
     public  void initUserCreation() {
         click(By.linkText("add new"));
     }
+
+    public int count() {
+       return  wd.findElements (By.name("selected[]")).size();
+    }
+
+    public void deleteSelectedGroup()
+    {click(By.name("delete"));
+    }
+
+    public void selectCheckBox(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
+       // click(By.name("selected[]"));
+    }
+
+    public void pathToDelete(){
+        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+        wd.switchTo().alert().accept();
+    }
 }

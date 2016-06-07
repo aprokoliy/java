@@ -2,8 +2,11 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by user on 25-Apr-16.
@@ -23,7 +26,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void fillGroupForm(GroupData groupData) {
+    public void fill(GroupData groupData) {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
@@ -31,14 +34,6 @@ public class GroupHelper extends HelperBase {
 
     public void initGroupCreation() {
         click(By.name("new"));
-    }
-
-    public void deleteSelectedGroup()
-    {click(By.name("delete"));
-    }
-
-    public void selectCheckBox() {
-        click(By.name("selected[]"));
     }
 
 
@@ -54,14 +49,20 @@ public class GroupHelper extends HelperBase {
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
-    public void pathToDelete(){
-        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
-        wd.switchTo().alert().accept();
+    public List<GroupData> getGroupList() {
+        List<GroupData> groups = new ArrayList<GroupData>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        for(WebElement element: elements){
+            String name = element.getText();
+            GroupData group = new GroupData(name, null,null);
+            groups.add(group);
+        }
+        return groups;
     }
 
-    public void createGroup(GroupData group) {
+    public void create(GroupData group) {
         initGroupCreation();
-        fillGroupForm(group);
+        fill(group);
         submitGroupCreation();
         returnToGroupPage();
     }
@@ -69,4 +70,6 @@ public class GroupHelper extends HelperBase {
     public boolean isThereGroup() {
         return isElementPresent(By.name("selected[]"));
     }
+
+
 }
