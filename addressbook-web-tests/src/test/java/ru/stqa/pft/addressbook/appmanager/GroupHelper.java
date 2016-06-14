@@ -49,22 +49,37 @@ public class GroupHelper extends HelperBase {
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
-    public List<GroupData> getGroupList() {
+    public List<GroupData> list() {
         List<GroupData> groups = new ArrayList<GroupData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for(WebElement element: elements){
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("Value"));
-            GroupData group = new GroupData();
+            GroupData group = new GroupData().withId(id).withName(name);
             groups.add(group);
         }
         return groups;
     }
 
+
     public void create(GroupData group) {
         initGroupCreation();
         fill(group);
         submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    public void modify(int index, GroupData group) {
+       selectCheckBox(index);
+        initGrpoupModification();
+        fill(group);
+        submitGroupModification();
+        returnToGroupPage();
+    }
+
+    public void delete(int index) {
+        selectCheckBox(index);
+        deleteSelectedGroup();
         returnToGroupPage();
     }
 
