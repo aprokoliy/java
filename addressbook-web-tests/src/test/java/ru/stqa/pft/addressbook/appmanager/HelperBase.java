@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 /**
  * Created by user on 26-Apr-16.
@@ -16,8 +16,8 @@ public class HelperBase {
         this.wd = wd;
     }
 
-    protected void click(By locator) {
-        wd.findElement(locator).click();
+    public void click(By locator) {
+       wd.findElement(locator).click();
     }
 
     public void type(By locator, String text) {
@@ -63,7 +63,11 @@ public class HelperBase {
 
     public void selectCheckBox(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
-       // click(By.name("selected[]"));
+
+    }
+    public void selectGroupById(int id) {
+        wd.findElement(By.cssSelector("input[value='"+ id +"']")).click();
+
     }
 
     public void pathToDelete(){

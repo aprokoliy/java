@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by user on 25-Apr-16.
@@ -49,8 +50,8 @@ public class GroupHelper extends HelperBase {
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
-    public List<GroupData> list() {
-        List<GroupData> groups = new ArrayList<GroupData>();
+    public Set<GroupData> all() {
+        Set<GroupData> groups = new HashSet<GroupData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for(WebElement element: elements){
             String name = element.getText();
@@ -69,16 +70,16 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public void modify(int index, GroupData group) {
-       selectCheckBox(index);
+    public void modify(GroupData group) {
+       selectGroupById(group.getId());
         initGrpoupModification();
         fill(group);
         submitGroupModification();
         returnToGroupPage();
     }
 
-    public void delete(int index) {
-        selectCheckBox(index);
+    public void delete(GroupData group) {
+        selectGroupById(group.getId());
         deleteSelectedGroup();
         returnToGroupPage();
     }
@@ -86,6 +87,7 @@ public class GroupHelper extends HelperBase {
     public boolean isThereGroup() {
         return isElementPresent(By.name("selected[]"));
     }
+
 
 
 }
