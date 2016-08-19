@@ -73,6 +73,7 @@ public class GroupHelper extends HelperBase {
         submitGroupCreation();
         groupCache = null;
         returnToGroupPage();
+
     }
 
     public void modify(GroupData group) {

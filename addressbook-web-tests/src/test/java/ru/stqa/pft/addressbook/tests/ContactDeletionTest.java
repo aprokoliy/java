@@ -21,6 +21,6 @@ public class ContactDeletionTest extends TestBase {
         app.contact().pathToDelete();
         app.goTo().HomePage();
         int after = app.contact().count();
-        Assert.assertEquals(after, before-1);
+        Assert.assertEquals(before-1,after);
     }
 }
