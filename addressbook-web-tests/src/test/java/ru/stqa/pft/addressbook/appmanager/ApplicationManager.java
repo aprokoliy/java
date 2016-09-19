@@ -20,6 +20,7 @@ public class ApplicationManager {
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private String browser;
+    private DBHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -28,6 +29,7 @@ public class ApplicationManager {
 
     public void init() {
 
+        dbHelper = new DBHelper();
         /*
         if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver();
@@ -59,6 +61,7 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
         sessionHelper.login("admin", "secret");
+
     }
 
     public void stop() {
@@ -78,4 +81,8 @@ public class ApplicationManager {
         return contactHelper;
     }
 
+    public DBHelper db(){
+
+        return dbHelper;
+    }
 }
