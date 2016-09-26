@@ -7,7 +7,7 @@ import ru.stqa.pft.addressbook.model.ContactPersonalData;
 
 import java.io.File;
 @SuppressWarnings("unchecked")
-public class NewContactCreation extends TestBase {
+public class ContactCreation extends TestBase {
 
     @Test
     @SuppressWarnings("unchecked")
