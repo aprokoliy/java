@@ -13,7 +13,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by user on 26-Apr-16.
  */
-public class GroupModificationTests extends TestBase {
+public class GroupModificationTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){

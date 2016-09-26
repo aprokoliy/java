@@ -24,7 +24,7 @@ public class TestBase {
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-    public static final ApplicationManager app = new ApplicationManager(BrowserType.IE);
+    public static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
     @BeforeSuite
     public void setUp() throws Exception {

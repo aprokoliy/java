@@ -20,7 +20,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 
-public class GroupCreationTests extends TestBase {
+public class GroupCreationTest extends TestBase {
 
 
 
