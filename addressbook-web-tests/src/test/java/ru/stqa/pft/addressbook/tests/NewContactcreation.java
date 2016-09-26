@@ -10,6 +10,7 @@ import java.io.File;
 public class NewContactCreation extends TestBase {
 
     @Test
+    @SuppressWarnings("unchecked")
     public void newContactCreation() {
         app.goTo().initUserCreation();
         File photo=new File("src/test/resources/photo.jpeg");
@@ -19,6 +20,7 @@ public class NewContactCreation extends TestBase {
         app.contact().submitContactCreation();
     }
     @Test
+    @SuppressWarnings("unchecked")
     public void currentDir(){
         File currentDir = new File(".");
         System.out.println(currentDir.getAbsolutePath());
