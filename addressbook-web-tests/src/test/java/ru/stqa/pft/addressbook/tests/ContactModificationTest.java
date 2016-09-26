@@ -9,7 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactPersonalData;
 /**
  * Created by user on 26-Apr-16.
  */
-public class ContactModificationTests extends TestBase {
+public class ContactModificationTest extends TestBase {
 
 
     @Test
