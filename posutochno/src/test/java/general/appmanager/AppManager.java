@@ -1,16 +1,20 @@
 package general.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+        import org.openqa.selenium.By;
+        import org.openqa.selenium.WebDriver;
+        import org.openqa.selenium.WebElement;
+        import org.openqa.selenium.chrome.ChromeDriver;
+        import org.openqa.selenium.firefox.FirefoxDriver;
+        import org.openqa.selenium.ie.InternetExplorerDriver;
+        import org.openqa.selenium.support.ui.ExpectedConditions;
+        import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
+        import java.util.NoSuchElementException;
+        import java.util.concurrent.TimeUnit;
 
-import static org.openqa.selenium.remote.BrowserType.CHROME;
-import static org.openqa.selenium.remote.BrowserType.FIREFOX;
-import static org.openqa.selenium.remote.BrowserType.IE;
+        import static org.openqa.selenium.remote.BrowserType.CHROME;
+        import static org.openqa.selenium.remote.BrowserType.FIREFOX;
+        import static org.openqa.selenium.remote.BrowserType.IE;
 
 /**
  * Created by user on 10-Nov-16.
@@ -19,10 +23,12 @@ public class AppManager {
 
     private WebDriver wd;
     private String browser;
+    WebDriverWait wait;
 
 
     public AppManager(String browser) {
         this.browser = browser;
+
     }
 
     public void init(){
@@ -39,16 +45,23 @@ public class AppManager {
                 break;
             default:
                 System.out.println("Browser is not chosen or another inner error occurs!");
+
         }
-       // wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        // wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("https://www.posutochno.com/");
+        wait = new WebDriverWait(wd, 3);
     }
 
     public void stop() {
-      wd.quit();
+        wd.quit();
+    }
+
+    public void waitElement(String locator){
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
     }
 
     public void goToLoginPage(){
+        waitElement("//a[@data-ui-sref='login']");
         wd.findElement(By.xpath("//a[@data-ui-sref='login']")).click();
     }
 
@@ -71,6 +84,51 @@ public class AppManager {
 
     public void invalidLoginOrPassword(){
         wd.findElement(By.xpath("//*[@id='messages']"));
+    }
+
+    public String getErrorMessage(){
+        waitElement("//*[@id='messages']");
+        return wd.findElement(By.xpath("//*[@id='messages']")).getText();
+    }
+
+    public boolean isElementPresent(String locator){
+       try{
+           waitElement(locator);
+           wd.findElement(By.xpath(locator));
+           return true;
+
+       }catch (NoSuchElementException e) {
+            return false;
+       }
+    }
+
+    public boolean isElementClickable(String locator){
+        try{
+            waitElement(locator);
+            WebElement element =  wd.findElement(By.xpath(locator));
+            if (element.isDisplayed() && element.isEnabled()) {
+                element.click();
+            }return true;
+
+        }catch (NoSuchElementException e) {
+            return false;
+
+        }
+    }
+
+    public void clickOnElement(String locator){
+        waitElement(locator);
+        wd.findElement(By.xpath(locator)).click();
+    }
+
+    public String getTextOfElement(String locator){
+        waitElement(locator);
+        return wd.findElement(By.xpath(locator)).getText();
+    }
+
+    public void goToEnLocal(){
+        waitElement("//img[@alt='en']");
+        wd.findElement(By.xpath("//img[@alt='en']")).click();
     }
 }
 
