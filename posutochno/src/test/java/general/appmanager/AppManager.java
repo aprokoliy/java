@@ -49,7 +49,7 @@ public class AppManager {
         }
         // wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("https://www.posutochno.com/");
-        wait = new WebDriverWait(wd, 3);
+        wait = new WebDriverWait(wd, 5);
     }
 
     public void stop() {
